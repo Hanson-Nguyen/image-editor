@@ -11,14 +11,14 @@ gui.configure(background = 'black')
 gui.title("Image Editor")
 
 frame = tk.Frame(gui, bg = "white")
-frame.place(relwidth = 1, relheight = 0.8, relx = 0, rely = 0)
+frame.place(relwidth = 1, relheight = 0.9, relx = 0, rely = 0)
 frame.configure(background = 'teal')
 
-canvas = Canvas(gui, width = 500, height = 500, bg = 'teal')
+canvas = Canvas(gui, width = 600, height = 600, highlightthickness = 0, bg = 'teal')
 canvas.pack()
 
 def openImage(self):
-    img = Image.open("cat.jpg")
+    img = Image.open("test1.gif")
 
     #checking size of image to resize image and keep ratio
     width, height = img.size
@@ -31,12 +31,12 @@ def openImage(self):
     if (width > height):
         hratio = height/width
 
-    img2 = img.resize((round(wratio * 500), round(hratio * 500)), Image.ANTIALIAS)
+    img2 = img.resize((round(wratio * 750), round(hratio * 750)), Image.ANTIALIAS)
     resized = ImageTk.PhotoImage(img2)
     self.img = resized
     canvas.create_image(0, 0, anchor = "nw", image = resized) 
 
 buttonOpenImage = Button(gui, text = "Open Image", command = lambda:openImage(gui))
-buttonOpenImage.pack()
+buttonOpenImage.pack(padx = 50, pady = 50)
 
 gui.mainloop()
