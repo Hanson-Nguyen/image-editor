@@ -1,12 +1,14 @@
+import os
 import tkinter as tk
 from PIL import Image
 from PIL import ImageTk
 from tkinter import filedialog, Text, Button, PhotoImage, Canvas
-import os
+import tkinter.filedialog
+import tkFileDialog
 
 gui = tk.Tk()
 gui.resizable(True, True)
-gui.geometry("1280x720")
+gui.geometry("1600x900")
 gui.configure(background = 'black')
 gui.title("Image Editor")
 
@@ -14,8 +16,8 @@ frame = tk.Frame(gui, bg = "white")
 frame.place(relwidth = 1, relheight = 0.9, relx = 0, rely = 0)
 frame.configure(background = 'teal')
 
-canvas = Canvas(gui, width = 600, height = 600, highlightthickness = 0, bg = 'teal')
-canvas.pack()
+canvas = Canvas(gui, width = 750, height = 750, highlightthickness = 0, bg = 'teal')
+canvas.grid()
 
 def openImage(self):
     img = Image.open("test1.gif")
@@ -36,7 +38,16 @@ def openImage(self):
     self.img = resized
     canvas.create_image(0, 0, anchor = "nw", image = resized) 
 
+content = 'apple'
+file_path = 'banana'
+
+def selectImage(self):
+    myfile = filedialog.askopenfilename()
+
 buttonOpenImage = Button(gui, text = "Open Image", command = lambda:openImage(gui))
-buttonOpenImage.pack(padx = 50, pady = 50)
+buttonOpenImage.grid(row = 5, column = 3)
+
+buttonChooseImage = Button(gui, text = "Select Image", command = lambda:selectImage(gui))
+buttonChooseImage.grid(row = 6, column = 3)
 
 gui.mainloop()
